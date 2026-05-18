@@ -44,4 +44,3 @@ def read_lines(filename):
         return lista
         
 
-print(read_lines("data\ej01_frutas.txt"))
