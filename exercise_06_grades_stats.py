@@ -34,4 +34,24 @@ def grades_stats(filename):
             "Cami": (10.0, 10.0, 10.0),
         }
     """
-    pass  # Reemplazar con tu implementación
+    import os
+
+    if not os.path.exists(filename):
+        raise FileNotFoundError("No existe el archivo")
+    
+    stats_dict = {}
+
+    with open(filename, "r") as file:
+        for line in file:
+            line = line.strip()
+            if line != "":
+                parts = line.split(":")
+                estudiante = parts[0]
+                notas_str = parts[1]
+                notas = [float(n) for n in notas_str.split(",")]
+                promedio = sum(notas) / len(notas)
+                maximo = max(notas)
+                minimo = min(notas)
+                stats_dict[estudiante] = (promedio, maximo, minimo)
+
+        return stats_dict
